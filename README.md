@@ -40,4 +40,4 @@ SQL Server:
 =======
 # Qhali_Turnos
 Sistema de turnos de la clinica QhaliÑawi
->>>>>>> b184dad8accee5c0dfa9342bd3bb83502dfbed62
+>>>>>>> 
