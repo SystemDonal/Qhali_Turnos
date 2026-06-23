@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Qhali Ñahui - Turnero clínico
 
 Sistema local para registro, llamado y atención de pacientes por módulos.
@@ -44,3 +45,7 @@ SQL Server:
 - `/login.html`: acceso de operadores y administración.
 - `/admin.html`: administración.
 - `/operator.html`: panel de operador.
+=======
+# Qhali_Turnos
+Sistema de turnos de la clinica QhaliÑawi
+>>>>>>> b184dad8accee5c0dfa9342bd3bb83502dfbed62
