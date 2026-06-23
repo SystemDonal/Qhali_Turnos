@@ -1,0 +1,17 @@
+QHALI NAHUI - REEMPLAZO PORTABLE SIN INTERNET
+
+Este paquete incluye node_modules para que el sistema pueda iniciar sin ejecutar npm install.
+
+Pasos recomendados:
+
+1. Cierre todas las ventanas del sistema y cualquier consola de npm/node.
+2. En la carpeta donde tiene instalado el sistema, elimine solo la carpeta node_modules si esta incompleta o danada.
+3. Copie todo el contenido de este paquete encima de su sistema.
+4. Ejecute iniciar_turnero.bat.
+
+Notas:
+
+- No ejecute npm install si no tiene internet estable o si su proxy bloquea npm.
+- El error ETIMEDOUT significa que npm no pudo descargar paquetes por red/proxy.
+- El aviso EPERM al borrar carpetas suele aparecer cuando Windows tiene archivos bloqueados por otra consola, antivirus o proceso node abierto.
+- Este reemplazo no modifica la base de datos PostgreSQL.

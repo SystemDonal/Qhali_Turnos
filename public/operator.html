@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="icon" type="image/svg+xml" href="/media/branding/qhali-logo.svg" />
+  <link rel="shortcut icon" href="/media/branding/qhali-emblem.png" /><title>Área clínica</title>
+  <link rel="stylesheet" href="/styles.css?v=optometria-medicos-activos-20260619" />
+</head>
+<body class="admin-body">
+  <div class="app-shell operator-layout qn-distribution-layout">
+    <aside class="sidebar glass operator-logo-sidebar qn-left-register">
+      <div class="operator-logo-center">
+        <img src="/media/branding/qhali-logo.svg" alt="Qhali Ñahui" class="operator-centered-logo" />
+      </div>
+      <div>
+        <p class="eyebrow" id="operatorTitle">Optometría</p>
+        <h2>Registro de pacientes</h2>
+        <p class="muted hidden" id="operatorSubcopy"></p>
+      </div>
+      <section id="operatorRegistrationSection" class="operator-registration-section">
+        <form id="operatorPatientForm" class="grid-form compact-form qn-vertical-form">
+          <label>DNI<div class="inline-actions qn-dni-auto-row"><input name="dni" id="operatorDni" placeholder="Ej. 12345678" maxlength="8" required /><button type="button" id="lookupDniBtn" class="ghost-btn small-btn hidden">Buscar DNI</button></div></label>
+          <label>Nombre<input name="firstName" id="operatorFirstName" placeholder="Ej. María" required /></label>
+          <label>Apellido<input name="lastName" id="operatorLastName" placeholder="Ej. Quispe" required /></label>
+          <label class="full-span">Observación<textarea name="notes" rows="3" placeholder="Dato opcional"></textarea></label>
+          <input type="hidden" name="moduleId" id="operatorModuleId" value="optometria" />
+          <input type="hidden" name="area" id="operatorAreaInput" value="Optometría" />
+          <select name="doctorName" id="operatorDoctorName" class="hidden"><option value="">Optometría general</option></select>
+          <select name="immediateReferralModuleId" id="operatorImmediateReferralModuleId" class="hidden"><option value="">Sin referencia inmediata</option></select>
+          <select name="immediateReferralDoctorName" id="operatorImmediateReferralDoctorName" class="hidden"><option value="">Especialidad automática del módulo</option></select>
+          <input type="hidden" name="code" value="" />
+          <div class="actions full-span qn-register-actions"><button type="submit" class="primary-btn">Registrar paciente</button></div>
+        </form>
+      </section>
+      <div id="operatorRegistrationBlocked" class="empty-state operator-registration-blocked hidden">El registro de pacientes solo está habilitado en Administración y Optometría.</div>
+      <p id="operatorFormMessage" class="form-message"></p>
+      <div class="session-strip operator-session-strip"><span id="sessionLabel">Sesión</span><button type="button" class="ghost-btn small-btn" data-action="logout">Salir</button></div>
+      <nav class="nav-links compact-nav-links"><a href="/index.html">Panel público</a><a href="/login.html">Cambiar sesión</a></nav>
+    </aside>
+
+    <main class="workspace full-width qn-center-workspace">
+      <section class="panel glass operator-main-panel qn-patient-list-panel">
+        <div class="section-head qn-clean-head"><div><p class="section-kicker">Lista de pacientes registrados</p><h1>Pacientes para atención</h1></div></div>
+        <div id="operatorSummary" class="operator-summary-grid"></div>
+        <div id="operatorModulesBoard" class="operator-modules-board qn-patient-board"></div>
+        <section class="panel glass internal-call-panel qn-internal-panel">
+          <div class="section-head"><div><p class="section-kicker">Comunicado interno</p><h2>Llamado de apoyo</h2></div></div>
+          <form id="internalAnnouncementForm" class="grid-form compact-form">
+            <label>Nombre o área interna<input name="targetName" id="internalTargetName" placeholder="Ej. FAMILIAR DEL PACIENTE" required /></label>
+            <label class="full-span">Mensaje adicional<input name="message" id="internalMessage" placeholder="Ej. ACERCARSE A RECEPCIÓN" /></label>
+            <div class="actions full-span"><button type="submit" class="primary-btn">Emitir llamado</button></div>
+          </form>
+          <div id="internalAnnouncementHistory" class="admin-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <aside class="sidebar glass qn-doctors-sidebar">
+      <div class="section-head"><div><p class="section-kicker">Destino de atención</p><h2>Especialidades</h2><p class="muted">Desde Optometría, arrastre el paciente llamado hacia la especialidad de Consultorio. En otros módulos, use esta zona para organizar la atención.</p></div></div>
+      <div id="operatorDoctorsPanel" class="qn-doctor-grid"></div>
+    </aside>
+  </div>
+
+  <div id="referralModal" class="modal-overlay hidden"><div class="modal-card glass"><div class="section-head compact-modal-head"><div><p class="section-kicker">Flujo del paciente</p><h3>Confirmar atención del paciente</h3><p class="muted" id="referralModalPatient">Seleccione si el paciente continúa a otro módulo o si se guardará al final.</p></div></div><div class="modal-body"><label>Derivar a otro módulo<select id="referralTargetSelect"><option value="">Guardar al final de este módulo</option></select></label><label>Especialidad de destino<select id="referralDoctorSelect"><option value="">Especialidad automática del módulo</option></select></label><label>Observación de referencia<textarea id="referralNotes" rows="3" placeholder="Dato opcional para el siguiente módulo"></textarea></label></div><div class="modal-actions"><button type="button" id="referralSaveFinalBtn" class="ghost-btn">Guardar al final</button><button type="button" id="referralConfirmBtn" class="primary-btn">Referir paciente</button><button type="button" id="referralCancelBtn" class="ghost-btn danger">Cancelar</button></div></div></div>
+  <script src="/socket.io/socket.io.js"></script><script src="/shared.js?v=produccion-db-ok-20260617"></script><script src="/operator.js?v=optometria-medicos-activos-20260619"></script>
+</body>
+</html>

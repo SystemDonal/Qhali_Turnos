@@ -1,0 +1,59 @@
+QHALI NAHUI - TURNERO PROFESIONAL
+=================================
+
+INICIO LOCAL RECOMENDADO
+------------------------
+1. Abrir la carpeta principal del sistema.
+2. Ejecutar con doble clic:
+   iniciar_turnero.bat
+3. El sistema validara Node.js, npm, dependencias y sintaxis.
+4. Luego abrira automaticamente:
+   http://localhost:3000/index.html
+
+INICIO POR CONSOLA
+------------------
+1. Abrir PowerShell en la carpeta del sistema.
+2. Ejecutar:
+   npm install
+   npm run check
+   npm start
+3. Abrir:
+   http://localhost:3000/index.html
+
+BASE DE DATOS
+-------------
+El sistema puede trabajar con respaldo local y con base de datos externa.
+
+PostgreSQL:
+- Configuracion: config/postgresql.json
+- Script: database/POSTGRESQL_SCHEMA.sql
+
+SQL Server para KPIs:
+- Configuracion: config/sqlserver.json
+- Script: database/SQLSERVER_SCHEMA.sql
+
+Si una base externa no esta disponible, el sistema no debe romper el turnero:
+seguira guardando la informacion localmente en la carpeta data.
+
+USUARIOS INICIALES
+------------------
+Administrador: admin / 1234
+Recepcion: recepcion / 1234
+Operador Optometria: operador_optometria_01 / 1234
+Operador Examenes: operador_examenes_01 / 1234
+Operador Consultorio: operador_consultorio_01 / 1234
+
+ESTRUCTURA SQL EN ESPANOL
+-------------------------
+Base de datos: TurneroQhaliNahui
+Tablas:
+- modulos_atencion
+- usuarios_sistema
+- pacientes
+- eventos_llamado
+- auditoria_llamados
+Vista:
+- vw_auditoria_llamados_diaria
+
+Los usuarios de Optometria, Examenes y Consultorio se administran desde Administracion.
+Si el alta de usuario falla, revise la configuracion SQL y ejecute el script incluido en database.

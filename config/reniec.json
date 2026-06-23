@@ -1,0 +1,14 @@
+{
+  "enabled": false,
+  "provider": "apisperu",
+  "token": "",
+  "timeoutMs": 12000,
+  "providers": {
+    "apisperu": {
+      "baseUrl": "https://dniruc.apisperu.com/api/v1/dni/{numero}",
+      "method": "GET",
+      "query": { "token": "{token}" },
+      "headers": {}
+    }
+  }
+}

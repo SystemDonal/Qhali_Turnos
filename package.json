@@ -1,0 +1,17 @@
+{
+  "name": "turnero-qhali-nawi-pro",
+  "version": "6.3.1-index-compact",
+  "description": "Turnero profesional Qhali Ñawi con distribución TV/módulos, audio, PostgreSQL opcional y respaldo local sin pérdida de datos.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check public/admin.js && node --check public/operator.js && node --check public/tv-display.js && node --check public/shared.js && node --check public/voice-config.js && node --check src/config/modules.js && node --check src/services/postgres.js && node --check src/services/sqlserver.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mssql": "^11.0.1",
+    "socket.io": "^4.8.1",
+    "socket.io-parser": "4.2.6",
+    "pg": "^8.13.1"
+  }
+}

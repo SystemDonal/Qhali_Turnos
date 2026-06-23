@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="icon" type="image/svg+xml" href="/media/branding/qhali-logo.svg" />
+  <link rel="shortcut icon" href="/media/branding/qhali-emblem.png" /><title>Qhali Ñahui · Sistema Clínico de Turnos</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="display-body public-pro-body">
+  <div class="tv-top-ticker tv-marquee-header"><div id="ticker-text">Qhali Ñahui · Atención clínica premium sincronizada en todas las pantallas · llamada natural de pacientes · audio y video coordinados en todas las televisiones</div></div>
+  <div class="display-shell public-v5-shell">
+    <header class="hero-panel glass hero-pro hero-futurist">
+      <div class="brand-cluster compact-brand-cluster">
+        <div class="brand-logo-wrap animated-logo-wrap hero-logo-wrap">
+          <img src="/media/branding/qhali-logo.svg" alt="Qhali Ñahui" class="brand-logo-img animated-logo-img" />
+        </div>
+        <div class="hero-copy-wrap">
+          <p class="eyebrow">Qhali Ñahui · Sistema de turnos clínicos</p>
+          <h1>Panel público inteligente</h1>
+          <p class="hero-copy">Seguimiento visual de turnos, llamado principal destacado, colas activas por módulo y contenido sincronizado para sala de espera.</p>
+          <div class="hero-mini-pills">
+            <span class="hero-mini-pill">Llamado en vivo</span>
+            <span class="hero-mini-pill">Sala sincronizada</span>
+            <span class="hero-mini-pill">Vista corporativa</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-badge" id="clock">--:--</div>
+        <div class="date-chip" id="todayDate">--</div>
+      </div>
+    </header>
+
+    <main class="display-grid public-layout-v5">
+      <section class="current-card glass pulse current-card-premium" id="currentCard">
+        <div class="section-head compact-head">
+          <div>
+            <p class="section-kicker">Llamado principal</p>
+            <h2 class="card-title">Ahora atendiendo</h2>
+          </div>
+          <div class="module-chip" id="currentModuleChip">Sin llamado</div>
+        </div>
+        <div id="emptyCall" class="empty-state public-empty">Aún no se ha realizado ningún llamado.</div>
+        <div id="currentCallContent" class="hidden">
+          <div class="code-pill xl" id="currentCode"></div>
+          <h2 id="currentName"></h2>
+          <p class="current-area" id="currentArea"></p>
+          <div class="current-meta">
+            <span id="currentModuleText"></span>
+            <span id="currentTime"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-board-v5">
+        <article class="stat-card glass"><span>Total en espera</span><strong id="totalWaiting">0</strong></article>
+        <article class="stat-card glass"><span>Optometría</span><strong id="countOptometria">0</strong></article>
+        <article class="stat-card glass"><span>Exámenes</span><strong id="countExamenes">0</strong></article>
+        <article class="stat-card glass"><span>Consultorio</span><strong id="countConsultorio">0</strong></article>
+        <article class="stat-card glass"><span>Imágenes</span><strong id="countImagenes">0</strong></article>
+        <article class="stat-card glass"><span>IPL</span><strong id="countIpl">0</strong></article>
+        <article class="stat-card glass"><span>Cirugía</span><strong id="countCirugia">0</strong></article>
+      </section>
+
+      <section class="history-card glass compact-history-card history-full-width futuristic-history">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Llamados recientes</p>
+            <h3>Historial visible</h3>
+          </div>
+        </div>
+        <div class="history-list" id="historyList"></div>
+      </section>
+
+      <section class="module-board glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Servicios activos</p>
+            <h3>Cola por módulo</h3>
+          </div>
+        </div>
+        <div class="module-columns" id="moduleColumns"></div>
+      </section>
+
+      <section class="media-panel glass public-waiting-panel">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Zona de reproducción</p>
+            <h3>Videos informativos</h3>
+          </div>
+          <div class="playlist-status" id="playlistStatus">Zona de reproducción</div>
+        </div>
+        
+        <div class="video-wrap full-width-video">
+          <video id="waitingVideo" class="waiting-video" autoplay muted playsinline webkit-playsinline x5-playsinline preload="auto" poster="/media/branding/qhali-logo.svg">
+            <source id="waitingVideoSource" src="" type="video/mp4" />
+            Tu televisor no pudo abrir el video.
+          </video>
+          <div class="video-fallback hidden" id="videoFallbackMessage">No se pudo reproducir este video en este televisor. Usa preferentemente MP4 H.264.</div>
+        </div>
+
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/shared.js"></script>
+  <script src="/voice-config.js?v=referidos-lista-voz-20260617"></script>
+  <script src="/display.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "enabled": false,
+  "host": "127.0.0.1",
+  "port": 8081,
+  "password": "",
+  "autoStart": false,
+  "executablePath": "",
+  "preferredFullscreen": true,
+  "extraArgs": [
+    "--qt-privacy-ask=0",
+    "--network-caching=150",
+    "--file-caching=150",
+    "--disc-caching=150",
+    "--no-video-title-show"
+  ],
+  "defaultEngine": "html5"
+}

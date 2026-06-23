@@ -1,0 +1,67 @@
+QHALI ÑAHUI - AJUSTE DEL REPRODUCTOR Y VLC
+
+QUÉ SE CORRIGIÓ
+1. El panel público ya no muestra los controles del video por defecto.
+2. Se corrigió el CSS que hacía que el video se vea más pequeño.
+3. El video ahora llena mejor el área de reproducción.
+4. Se dejó el sistema preparado para que el video no muestre ese efecto visual de play/pause al arrancar.
+5. Se mantuvo la integración con VLC como motor opcional.
+
+POR QUÉ EL VIDEO BAJABA DE TAMAÑO
+Había una regla CSS que forzaba object-fit: contain.
+Eso hace que el video entre completo dentro del cuadro, pero dejando bordes negros y viéndose más pequeño.
+Ahora se dejó en object-fit: cover para que ocupe mejor la zona de reproducción.
+
+SOBRE VLC
+Sí, la integración con VLC está hecha como modo opcional.
+No es obligatorio para que el sistema reproduzca videos.
+
+MODOS DE REPRODUCCIÓN
+1. HTML5 interno del navegador
+   - Es el modo más simple.
+   - Funciona bien para MP4 H.264 + audio AAC.
+   - Es el recomendado si el televisor y el navegador reproducen bien.
+
+2. VLC externo
+   - Sirve cuando quieres usar VLC nativo de Windows para una reproducción más fuerte y estable.
+   - Se activa desde config/vlc.json.
+
+CONFIGURAR VLC
+Abre el archivo:
+config/vlc.json
+
+Cambia estos valores si deseas usar VLC:
+{
+  "enabled": true,
+  "autoStart": true,
+  "executablePath": "C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"
+}
+
+Luego inicia el sistema con:
+iniciar_vlc_pro_turnero.bat
+
+SI NO VAS A USAR VLC
+Deja:
+"enabled": false
+
+FORMATO DE VIDEO RECOMENDADO
+- MP4
+- Codec video: H.264
+- Resolución: 1920x1080
+- Audio: AAC
+- Bitrate moderado
+- FPS estable: 30
+
+SI AÚN HAY LATENCIA
+1. Usa videos MP4 H.264.
+2. No uses archivos demasiado pesados.
+3. Prueba primero en HTML5.
+4. Si el TV sigue fallando, activa VLC externo.
+5. Verifica que el TV no tenga modo ahorro de energía o postprocesado extraño.
+
+ARCHIVOS AJUSTADOS
+- public/panel-publico.html
+- public/display.js
+- public/styles.css
+- server.js
+

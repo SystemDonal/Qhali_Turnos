@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qhali Ñawi · Llamado de pacientes</title>
+  <link rel="icon" type="image/svg+xml" href="/media/branding/qhali-logo.svg" />
+  <link rel="shortcut icon" href="/media/branding/qhali-emblem.png" />
+  <link rel="stylesheet" href="/tv.css?v=index-video-volumen-fijo-20260620" />
+</head>
+<body class="tv-page">
+  <header class="tv-ticker" aria-label="Mensaje institucional">
+    <div class="tv-ticker-track">
+      <span>¡Síguenos en las distintas redes sociales!</span>
+      <span>La salud de tus ojos para nosotros es importante</span>
+      <span>¡Gracias por confiar en nosotros!</span>
+      <span>En Sicuani estamos en la Av. Manuel Callo Zevallos N° 250</span>
+      <span>Qhali Ñawi - Dr. Edward Valderrama</span>
+    </div>
+  </header>
+
+  <div id="tvMediaLayer" class="tv-media-layer" aria-label="Reproductor institucional">
+    <div class="tv-media-head">
+      <span class="tv-media-title">Contenido institucional</span>
+      <span id="videoStateBadge" class="tv-media-badge is-idle">Sin video</span>
+      <span id="audioStateBadge" class="tv-media-badge is-audio">Audio habilitado</span>
+    </div>
+    <video id="waitingVideo" class="tv-media-video" playsinline webkit-playsinline preload="auto"></video>
+    <audio id="waitingAudio" preload="auto"></audio>
+    <div id="mediaStatus" class="tv-media-status"></div>
+  </div>
+
+  <main class="tv-shell">
+    <section id="currentCard" class="call-hero" aria-live="polite">
+      <div class="call-brand">
+        <p class="brand-system">Sistema de turnos clínicos</p>
+        <div class="brand-logo-frame">
+          <img src="/media/branding/qhali-logo.svg" alt="Qhali Ñawi" />
+        </div>
+        <p class="brand-name">Qhali Ñawi mejora tu vida.</p>
+      </div>
+
+      <div class="call-center">
+        <p class="call-kicker">Llamado principal</p>
+        <h1>Atendiendo a</h1>
+
+        <div id="emptyCall" class="call-empty">Aún no se ha realizado ningún llamado.</div>
+
+        <div id="currentCallContent" class="call-patient hidden">
+          <div class="patient-primary">
+            <span id="currentCode" class="patient-code">---</span>
+            <strong id="currentName" class="patient-name">Paciente</strong>
+          </div>
+          <div class="patient-secondary">
+            <span id="currentArea">Módulo</span>
+            <span id="currentTime">--:--</span>
+            <span id="currentModuleText" class="sr-only">Módulo</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="call-side">
+        <span id="currentModuleChip" class="module-chip">Sin llamado</span>
+        <time id="clock" class="tv-clock">--:--:--</time>
+        <time id="todayDate" class="tv-date">--</time>
+      </aside>
+    </section>
+
+    <section class="module-zone" aria-label="Pacientes por módulo">
+      <div id="moduleColumns" class="module-grid"></div>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/voice-config.js?v=index-video-volumen-fijo-20260620"></script>
+  <script src="/tv-display.js?v=index-video-volumen-fijo-20260620"></script>
+</body>
+</html>

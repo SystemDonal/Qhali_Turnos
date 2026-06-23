@@ -1,0 +1,21 @@
+CARPETA DE VIDEOS DEL REPRODUCTOR
+=================================
+
+Coloque aqui los videos institucionales que desea reproducir en la pantalla publica.
+
+Ruta:
+public/media/videos
+
+Formatos recomendados:
+- MP4 H.264 / AAC
+- WebM
+- M4V
+
+Funcionamiento:
+- El sistema lee solamente esta carpeta.
+- Si hay varios videos, el reproductor los elige de forma aleatoria.
+- Al terminar un video, pasa a otro video aleatorio.
+- Si no hay videos, el turnero sigue funcionando normalmente.
+
+Nota:
+No guarde videos dentro de otras carpetas del sistema. Asi el paquete se mantiene limpio y facil de actualizar.

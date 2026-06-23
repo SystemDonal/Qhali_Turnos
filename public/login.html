@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="icon" type="image/svg+xml" href="/media/branding/qhali-logo.svg" />
+  <link rel="shortcut icon" href="/media/branding/qhali-emblem.png" /><title>Ingreso · Qhali Ñahui</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="admin-body login-body">
+  <main class="login-shell glass">
+    <div class="login-brand">
+      <div class="brand-logo-wrap animated-logo-wrap large-logo-wrap">
+        <img src="/media/branding/qhali-logo.svg" alt="Qhali Ñahui" class="brand-logo-img animated-logo-img" />
+      </div>
+      <div>
+        <p class="eyebrow">Qhali Ñahui · Control de turnos</p>
+        <h1>Ingreso seguro al sistema</h1>
+        <p class="hero-copy">Acceso corporativo para administración, recepción y personal clínico. Optometría, Consultorio, IPL y Cirugía ingresan cada uno con su propio usuario y contraseña.</p>
+      </div>
+    </div>
+
+    <form id="loginForm" class="grid-form login-form">
+      <label>
+        Usuario
+        <input name="username" placeholder="Ej. admin" required />
+      </label>
+      <label>
+        Clave
+        <input name="password" type="password" placeholder="Tu clave" required />
+      </label>
+      <div class="actions full-span">
+        <button type="submit" class="primary-btn">Ingresar al sistema</button>
+      </div>
+    </form>
+
+    <p id="loginAreaHint" class="form-message"></p>
+    <p id="loginMessage" class="form-message"></p>
+
+    <div class="tips-box glass-soft credentials-box">
+      <h3>Accesos iniciales</h3>
+      <p><strong>Administrador:</strong> admin / ****</p>
+      <p><strong>Recepción:</strong> recepcion</p>
+      <p><strong>Usuarios de área:</strong> optometria1 · consultorio1 · ipl1 · cirugia1</p>
+    </div>
+  </main>
+
+  <script src="/shared.js"></script>
+  <script src="/auth.js"></script>
+</body>
+</html>

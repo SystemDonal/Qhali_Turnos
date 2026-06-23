@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="icon" type="image/svg+xml" href="/media/branding/qhali-logo.svg" />
+  <link rel="shortcut icon" href="/media/branding/qhali-emblem.png" /><title>Administración del turnero</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="admin-body">
+  <div class="app-shell">
+    <aside class="sidebar glass admin-sidebar">
+      <div class="sidebar-brand sidebar-brand-refined">
+        <div class="sidebar-brand-logo sidebar-brand-emblem"><img src="/media/branding/qhali-emblem.png" alt="Qhali Ñahui"></div>
+        <div class="sidebar-brand-copy">
+          <p class="eyebrow">Qhali Ñahui</p>
+          <h1>Administración</h1>
+          <p class="muted">Control clínico general</p>
+        </div>
+      </div>
+      <p class="admin-intro">Supervisión ejecutiva de módulos, pacientes, usuarios, auditoría y sincronización de pantallas.</p>
+      <nav class="nav-links">
+        <a href="/index.html">Panel público</a>
+        <a href="/login.html">Cambiar sesión</a>
+      </nav>
+      <div class="session-strip"><span id="sessionLabel">Sesión</span><button type="button" class="ghost-btn small-btn" data-action="logout">Salir</button></div>
+      <div class="tips-box glass-soft compact-tip-box">
+        <h3>Videos de espera</h3>
+        <p>Copia tus videos dentro de <strong>public/media/videos</strong> y sincronízalos en los 3 televisores.</p>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Registro clínico</p>
+            <h2>Nuevo paciente</h2>
+          </div>
+        </div>
+        <form id="patientForm" class="grid-form">
+          <label>
+            DNI
+            <div class="inline-actions">
+              <input name="dni" id="dniInput" placeholder="Ej. 12345678" maxlength="8" required />
+              <button type="button" id="lookupDniAdmin" class="ghost-btn small-btn">Buscar DNI</button>
+              <button type="button" id="lookupPatientAdmin" class="ghost-btn small-btn">Buscar paciente</button>
+            </div>
+          </label>
+          <label>
+            Nombre
+            <input name="firstName" id="firstNameInput" placeholder="Ej. María" required />
+          </label>
+          <label>
+            Apellido
+            <input name="lastName" id="lastNameInput" placeholder="Ej. Quispe" required />
+          </label>
+          <label>
+            Área clínica
+            <select name="moduleId" id="moduleId"></select>
+          </label>
+          <label>
+            Ambiente / destino
+            <input name="area" id="areaInput" placeholder="Ej. Optometría" />
+          </label>
+          <label>
+            Especialidad
+            <select name="doctorName" id="doctorName"></select>
+          </label>
+          <label>
+            Referir de inmediato a
+            <select name="immediateReferralModuleId" id="immediateReferralModuleId">
+              <option value="">Sin referencia inmediata</option>
+            </select>
+          </label>
+          <label>
+            Especialidad / subárea de referencia
+            <select name="immediateReferralDoctorName" id="immediateReferralDoctorName">
+              <option value="">Especialidad automática del módulo</option>
+            </select>
+          </label>
+          <label>
+            Código manual (opcional)
+            <input name="code" placeholder="Si queda vacío, se genera automático" />
+          </label>
+          <label class="full-span">
+            Observación
+            <textarea name="notes" rows="3" placeholder="Dato opcional"></textarea>
+          </label>
+          <div class="actions full-span">
+            <button type="submit" class="primary-btn">Guardar paciente</button>
+            <button type="button" id="resetAll" class="ghost-btn danger">Reiniciar sistema</button>
+          </div>
+        </form>
+        <p id="formMessage" class="form-message"></p>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Acción inmediata</p>
+            <h2>Llamar siguiente por módulo</h2>
+          </div>
+        </div>
+        <div class="quick-module-actions" id="quickModuleActions"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Acceso operativo</p>
+            <h2>Ingreso clínico por área</h2>
+          </div>
+        </div>
+        <div id="moduleLauncher" class="admin-list"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Cola registrada</p>
+            <h2>Pacientes en espera</h2>
+          </div>
+          <div class="inline-actions">
+            <button id="clearAllCalls" class="ghost-btn">Limpiar llamados</button>
+          </div>
+        </div>
+        <div id="adminQueue" class="admin-list"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Multimedia LAN</p>
+            <h2>Sincronización de televisores</h2>
+          </div>
+          <div class="inline-actions">
+            <button type="button" id="pauseVideoSync" class="ghost-btn">Pausar</button>
+            <button type="button" id="resumeVideoSync" class="ghost-btn">Reanudar</button>
+            <button type="button" id="enableGlobalAudio" class="primary-btn">Audio ON</button>
+            <button type="button" id="disableGlobalAudio" class="ghost-btn danger">Audio OFF</button>
+          </div>
+        </div>
+        <p class="muted">Control central para reproducir el mismo contenido audiovisual de espera en los 3 monitores al mismo tiempo.</p>
+        
+        <div class="video-master-controls glass-soft">
+          <label>
+            Volumen general TVs
+            <input type="range" id="globalVolumeRange" min="0" max="100" step="1" value="55" />
+          </label>
+          <label>
+            Velocidad de reproducción
+            <select id="globalPlaybackRate">
+              <option value="0.75">0.75x</option>
+              <option value="0.9">0.90x</option>
+              <option value="1" selected>1.00x</option>
+              <option value="1.1">1.10x</option>
+              <option value="1.25">1.25x</option>
+            </select>
+          </label>
+          <label>
+            Segundo de inicio
+            <input type="number" id="globalSeekSeconds" min="0" step="1" value="0" />
+          </label>
+          <div class="inline-actions master-actions-wrap">
+            <button type="button" id="applyVideoControls" class="primary-btn">Aplicar parámetros</button>
+            <button type="button" id="muteVideoSync" class="ghost-btn">Silenciar TVs</button>
+            <button type="button" id="unmuteVideoSync" class="ghost-btn">Activar audio TVs</button>
+            <button type="button" id="toggleLoopVideoSync" class="ghost-btn">Loop video</button>
+            <button type="button" id="toggleNativeControls" class="ghost-btn">Controles visibles</button>
+          </div>
+        </div>
+
+        <div id="videoSyncList" class="video-admin-list"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Atención en curso</p>
+            <h2>Llamado actual por módulo</h2>
+          </div>
+        </div>
+        <div id="currentCallsAdmin" class="module-current-grid"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Análisis operativo</p>
+            <h2>KPIs de atención clínica</h2>
+          </div>
+        </div>
+        <div id="kpiBoard" class="kpi-grid"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Historial</p>
+            <h2>Llamados realizados</h2>
+          </div>
+        </div>
+        <div id="historyAdmin" class="admin-list"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Área de usuarios por área</p>
+            <h2>Registro de usuarios para Optometría, Consultorio, IPL y Cirugía</h2>
+          </div>
+        </div>
+        <form id="userForm" class="grid-form compact-form">
+          <label>
+            Usuario
+            <input name="username" placeholder="Ej. operador2" required />
+          </label>
+          <label>
+            Clave
+            <input name="password" placeholder="Clave de acceso" required />
+          </label>
+          <label>
+            Nombre completo
+            <input name="fullName" placeholder="Ej. Juan Pérez" required />
+          </label>
+          <label>
+            Rol
+            <select name="role">
+              <option value="OPERADOR">USUARIO DE ÁREA</option>
+              <option value="RECEPCION">RECEPCIÓN</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
+          </label>
+          <label>
+            Área
+            <select name="moduleId" id="userModuleId"></select>
+          </label>
+          <label>
+            Especialidad / referencia
+            <select name="doctorName" id="userDoctorName"></select>
+          </label>
+          <div class="actions full-span">
+            <button type="submit" class="primary-btn">Guardar usuario</button>
+          </div>
+        </form>
+        <div id="usersSummary" class="operator-summary-grid user-summary-grid"></div><div id="usersList" class="admin-list"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Auditoría diaria</p>
+            <h2>Tiempos de atención por paciente</h2>
+          </div>
+        </div>
+        <div id="auditAdmin" class="admin-list"></div>
+      </section>
+
+      <section class="panel glass internal-call-panel">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Comunicado interno</p>
+            <h2>Llamado de apoyo o ubicación de persona</h2>
+            <p class="muted">Este llamado se emite únicamente por el panel principal (índex).</p>
+          </div>
+        </div>
+        <form id="internalAnnouncementForm" class="grid-form compact-form">
+          <label>
+            Nombre o área interna
+            <input name="targetName" id="internalTargetName" placeholder="Ej. JUAN PÉREZ / MAMÁ DEL PACIENTE / APOYO" required />
+          </label>
+          <label class="full-span">
+            Mensaje adicional
+            <input name="message" id="internalMessage" placeholder="Ej. ACERCARSE A CAJA / TIENE DOCUMENTOS PENDIENTES" />
+          </label>
+          <div class="actions full-span">
+            <button type="submit" class="primary-btn">Emitir llamado de apoyo</button>
+          </div>
+        </form>
+        <div id="internalAnnouncementHistory" class="admin-list"></div>
+      </section>
+
+      <section class="panel glass">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Diagnóstico</p>
+            <h2>Estado de base de datos y archivos</h2>
+          </div>
+        </div>
+        <div id="diagnosticsBox" class="admin-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/shared.js?v=medicos-video-20260617"></script>
+  <script src="/admin.js?v=video-volumen-fijo-20260620"></script>
+</body>
+</html>

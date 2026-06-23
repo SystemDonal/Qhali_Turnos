@@ -1,0 +1,33 @@
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Variables y secretos
+.env
+.env.*
+!.env.example
+config/postgresql.local.json
+config/sqlserver.local.json
+config/reniec.local.json
+config/vlc.local.json
+
+# Datos locales generados por el sistema
+data/*.json
+logs/
+tmp/
+*.log
+
+# Sistema operativo / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Backups / comprimidos
+*.zip
+*.rar
+*.7z
+*.bak

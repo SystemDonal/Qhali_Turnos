@@ -1,0 +1,66 @@
+CONFIGURACIÓN RÁPIDA DE API DNI
+
+1. Abra el archivo: config/reniec.json
+2. Cambie "enabled" a true
+3. En "provider" coloque el nombre del proveedor que usará
+4. En "token" pegue su token real
+5. En "providers" configure baseUrl, method y, si aplica, query y headers según su API
+
+EJEMPLO APIsPERU (TOKEN EN QUERY STRING)
+{
+  "enabled": true,
+  "provider": "apisperu",
+  "token": "SU_TOKEN_REAL",
+  "timeoutMs": 12000,
+  "providers": {
+    "apisperu": {
+      "baseUrl": "https://dniruc.apisperu.com/api/v1/dni/{numero}",
+      "method": "GET",
+      "query": {
+        "token": "{token}"
+      },
+      "headers": {}
+    }
+  }
+}
+
+EJEMPLO TIPO BEARER
+{
+  "enabled": true,
+  "provider": "miapi",
+  "token": "SU_TOKEN_REAL",
+  "timeoutMs": 12000,
+  "providers": {
+    "miapi": {
+      "baseUrl": "https://su-api.com/dni/{dni}",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Bearer {token}"
+      }
+    }
+  }
+}
+
+EJEMPLO TIPO TOKEN EN CABECERA
+{
+  "enabled": true,
+  "provider": "miapi",
+  "token": "SU_TOKEN_REAL",
+  "timeoutMs": 12000,
+  "providers": {
+    "miapi": {
+      "baseUrl": "https://su-api.com/dni/{dni}",
+      "method": "GET",
+      "headers": {
+        "apikey": "{token}"
+      }
+    }
+  }
+}
+
+NOTAS
+- {dni} y {numero} se reemplazan automáticamente con el DNI consultado.
+- {token} se reemplaza automáticamente con su token.
+- Puede enviar el token por query o por headers sin romper la arquitectura.
+- Después de guardar el archivo, reinicie el sistema.
+- Endpoint interno del sistema: /api/reniec/12345678
