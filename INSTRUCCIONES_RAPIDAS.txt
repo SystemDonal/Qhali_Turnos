@@ -35,14 +35,6 @@ SQL Server para KPIs:
 Si una base externa no esta disponible, el sistema no debe romper el turnero:
 seguira guardando la informacion localmente en la carpeta data.
 
-USUARIOS INICIALES
-------------------
-Administrador: admin / 1234
-Recepcion: recepcion / 1234
-Operador Optometria: operador_optometria_01 / 1234
-Operador Examenes: operador_examenes_01 / 1234
-Operador Consultorio: operador_consultorio_01 / 1234
-
 ESTRUCTURA SQL EN ESPANOL
 -------------------------
 Base de datos: TurneroQhaliNahui
