@@ -31,14 +31,6 @@ SQL Server:
 - Configuración: `config/sqlserver.json`
 - Script único: `database/SQLSERVER_SCHEMA.sql`
 
-## Usuarios iniciales
-
-- `admin` / `1234`
-- `recepcion` / `1234`
-- `optometria1` / `1234`
-- `examenes1` / `1234`
-- `consultorio1` / `1234`
-
 ## Rutas
 
 - `/index.html`: panel público principal al iniciar.
